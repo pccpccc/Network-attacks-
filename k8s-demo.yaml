@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-demo
+spec:
+  replicas: 3          # 這裡直接幫你開好 3 個 Server 實例
+  selector:
+    matchLabels:
+      app: my-web-app
+  template:
+    metadata:
+      labels:
+        app: my-web-app
+    spec:
+      containers:
+      - name: backend-node
+        image: sandrayang04/web-demo:v2  # 對應你剛剛 build 的 image 名字
+        imagePullPolicy: Always # 從 Docker Hub 拉取最新 image
+        ports:
+        - containerPort: 8080 # 你的 Express 跑在什麼 port 就填什麼
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 5
+          periodSeconds: 10
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+          initialDelaySeconds: 15
+          periodSeconds: 20
+

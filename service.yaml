@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-service
+spec:
+  type: ClusterIP    
+  selector:
+    app: my-web-app
+  ports:
+    - protocol: TCP
+      port: 80          # 外部訪問的埠號
+      targetPort: 8080  # 轉發到 Pod 內部的埠號
