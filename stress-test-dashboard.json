@@ -259,12 +259,18 @@
       "targets": [
         {
           "datasource": null,
-          "expr": "sum(rate(nginx_ingress_controller_requests[1m]))",
+          "expr": "sum(increase(nginx_ingress_controller_requests{status=~\"2..\"}[1m]))",
           "refId": "A",
-          "legendFormat": "請求數/秒 (RPS)"
+          "legendFormat": "成功連線數 (2xx)"
+        },
+        {
+          "datasource": null,
+          "expr": "sum(increase(nginx_ingress_controller_requests{status=~\"5..\"}[1m]))",
+          "refId": "B",
+          "legendFormat": "被擋下連線數 (5xx)"
         }
       ],
-      "title": "Ingress 請求速率 (RPS)",
+      "title": "連線數 (依 HTTP Code)",
       "type": "timeseries"
     },
     {

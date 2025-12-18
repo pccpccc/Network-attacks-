@@ -3,10 +3,10 @@ kind: Ingress
 metadata:
   name: web-ingress
   #annotations:
-    # 這是你的防禦核心：開啟限流 (Rate Limiting)
-   # nginx.ingress.kubernetes.io/limit-rps: "5"
-    # 允許小幅度的突發流量，增加彈性
-   # nginx.ingress.kubernetes.io/limit-burst-multiplier: "2"
+    #這是你的防禦核心：開啟限流 (Rate Limiting)
+    #nginx.ingress.kubernetes.io/limit-rps: "5"
+    #允許小幅度的突發流量，增加彈性
+    #nginx.ingress.kubernetes.io/limit-burst-multiplier: "2"
 spec:
   ingressClassName: nginx
   rules:

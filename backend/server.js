@@ -117,10 +117,6 @@ Interact directly with the backend. Refresh to trigger the load balancer, or sim
 <span class="material-symbols-outlined text-[20px] transition-transform duration-500 group-hover:rotate-180">refresh</span>
 Refresh Connection
 </button>
-<button onclick="window.location.href='/die'" class="group relative flex h-14 w-full items-center justify-center gap-2.5 rounded-full bg-transparent border border-white/20 text-primary text-[15px] font-medium hover:border-red-500 hover:text-red-500 hover:bg-red-500/10 transition-all active:scale-[0.98]">
-<span class="material-symbols-outlined text-[20px] group-hover:animate-pulse">dangerous</span>
-Simulate Crash (/die)
-</button>
 </div>
 </div>
 </section>
@@ -173,13 +169,6 @@ The architecture supports horizontal scaling, allowing new pods to be added seam
   
   console.log(`[LOG] Request served by Pod: ${podName}`); 
   res.status(200).send(message);
-});
-
-// 新增一個自殺端點，專門用來 Demo K8s 的自癒能力
-app.get('/die', (req, res) => {
-  console.log(`[ALERT] Pod ${podName} is shutting down for demo!`);
-  res.send(`Pod ${podName} is now dead. Watch K8s restart it!`);
-  process.exit(1); // 讓程式崩潰
 });
 
 app.listen(port, '0.0.0.0', () => { // <--- 加入 '0.0.0.0' 確保對外開放
