@@ -259,18 +259,12 @@
       "targets": [
         {
           "datasource": null,
-          "expr": "sum(increase(nginx_ingress_controller_requests{status=~\"2..\"}[1m]))",
+          "expr": "sum(rate(container_network_receive_bytes_total{pod=~\"web-demo-.*\",container!=\"\",container!=\"POD\"}[1m])) / 1024 / 1024",
           "refId": "A",
-          "legendFormat": "成功連線數 (2xx)"
-        },
-        {
-          "datasource": null,
-          "expr": "sum(increase(nginx_ingress_controller_requests{status=~\"5..\"}[1m]))",
-          "refId": "B",
-          "legendFormat": "被擋下連線數 (5xx)"
+          "legendFormat": "Pod 接收封包數/秒"
         }
       ],
-      "title": "連線數 (依 HTTP Code)",
+      "title": "Pod 實際網路流量",
       "type": "timeseries"
     },
     {

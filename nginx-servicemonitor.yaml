@@ -9,9 +9,18 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: ingress-nginx
+      # 建議加上 component，確保精確抓到 controller
+      app.kubernetes.io/component: controller 
   namespaceSelector:
     matchNames:
       - ingress-nginx
   endpoints:
   - port: metrics
     interval: 15s
+    # --- 新增以下這段 ---
+    # 這是為了確保 Ingress 的指標也能對齊 cAdvisor 的標籤格式
+    relabelings:
+      - sourceLabels: [__meta_kubernetes_pod_name]
+        targetLabel: pod
+      - sourceLabels: [__meta_kubernetes_namespace]
+        targetLabel: namespace

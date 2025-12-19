@@ -110,7 +110,7 @@ NTP Synced
 <div class="max-w-[980px] mx-auto px-4 md:px-6 flex flex-col items-center text-center">
 <h2 class="text-4xl font-semibold tracking-tight mb-4 text-primary">Control the Cluster</h2>
 <p class="text-secondary text-lg max-w-[580px] mb-12 leading-relaxed font-normal">
-Interact directly with the backend. Refresh to trigger the load balancer, or simulate a crash to watch Kubernetes heal.
+Interact directly with the backend. Refresh to trigger the load balancer and see traffic distribution across pods.
 </p>
 <div class="flex flex-col sm:flex-row gap-5 w-full justify-center max-w-lg">
 <button onclick="location.reload()" class="group relative flex h-14 w-full items-center justify-center gap-2.5 rounded-full bg-white text-black text-[15px] font-medium hover:bg-gray-200 transition-all active:scale-[0.98]">
@@ -140,7 +140,7 @@ Traffic is intelligently distributed across healthy pods, ensuring optimal resou
 </div>
 <h3 class="text-lg font-semibold text-primary tracking-tight">Self-Healing</h3>
 <p class="text-[15px] text-secondary leading-relaxed font-normal">
-If a pod crashes (like via the /die command), Kubernetes instantly detects the failure and replaces the instance.
+If a pod crashes, Kubernetes instantly detects the failure and automatically replaces the instance to maintain service availability.
 </p>
 </div>
 <div class="flex flex-col gap-4">
